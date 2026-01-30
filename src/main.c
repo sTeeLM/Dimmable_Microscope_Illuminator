@@ -1,8 +1,11 @@
 #include <STC8G.H>
 
 #include "debug.h"
+#include "eerom.h"
 #include "gpio.h"
 #include "com.h"
+#include "tm1650.h"
+#include "led.h"
 #include "delay.h"
 #include "task.h"
 #include "clock.h"
@@ -19,12 +22,17 @@ void main(void)
   gpio_initialize();
   com_initialize();
   
+  eerom_initialize();
+  tm1650_initialize();
+  led_initialize();
+  
   clock_initialize();
   button_initialize();
   
   task_initialize();
   sm_initialize();
   
-  while(1){
+  while(1) {
+    task_run();
   }
 }

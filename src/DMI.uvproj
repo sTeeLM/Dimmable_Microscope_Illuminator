@@ -206,8 +206,8 @@
             <Mode2>0</Mode2>
             <useCB>0</useCB>
             <useXB>0</useXB>
-            <useL251>0</useL251>
-            <useA251>0</useA251>
+            <useL251>1</useL251>
+            <useA251>1</useA251>
             <Mx51>0</Mx51>
             <ModC812>0</ModC812>
             <ModCont>0</ModCont>
@@ -425,6 +425,26 @@
               <FileName>task.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\task.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm1650.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\tm1650.c</FilePath>
+            </File>
+            <File>
+              <FileName>i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>led.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\led.c</FilePath>
+            </File>
+            <File>
+              <FileName>eerom.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\eerom.c</FilePath>
             </File>
           </Files>
         </Group>
