@@ -3,7 +3,7 @@
 #include "cext.h"
 
 
-// 时钟频率11059200
+// 时钟频率 11059200
 static void internal_delay_10us(void) 
 {
   uint8_t data i;

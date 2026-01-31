@@ -5,12 +5,20 @@
 
 typedef struct _led_cfg_t
 {
-  uint8_t brightness;
+  uint16_t brightness; /* 0 ~ 1000*/
+  uint16_t color;      /* 0 ~ 1000*/
 }led_cfg_t;
 
 extern led_cfg_t led_cfg;
 
 void led_factory_reset(void);
 void led_initialize(void);
+
+void led_inc_color(bit fast);
+void led_dec_color(bit fast);
+void led_inc_brightness(bit fast);
+void led_dec_brightness(bit fast);
+uint16_t led_get_brightness(void);
+uint16_t led_get_color(void);
 
 #endif
