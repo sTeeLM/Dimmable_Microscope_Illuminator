@@ -68,7 +68,8 @@ static unsigned char code tm1650_display_code[] =
 
 void tm1650_factory_reset(void)
 {
-  tm1650_cfg.brightness = 0;
+  CDBG("tm1650_factory_reset\n");
+  tm1650_cfg.brightness = 7;
 }
 
 void tm1650_initialize(void)
@@ -80,7 +81,7 @@ void tm1650_initialize(void)
   tm1650_display_mode = 0;
   tm1650_set_mod(TM1650_MOD_8_DIG);
   tm1650_enable_display(1);
-  tm1650_set_brightness(7);
+  tm1650_set_brightness(tm1650_cfg.brightness);
   tm1650_clear();
   tm1650_set_dig(3, 0, '-');
   delay_ms(200);

@@ -314,9 +314,9 @@
             <uAregs>0</uAregs>
             <UseInterruptVector>1</UseInterruptVector>
             <Fuzzy>3</Fuzzy>
-            <Optimize>8</Optimize>
+            <Optimize>9</Optimize>
             <WarningLevel>2</WarningLevel>
-            <SizeSpeed>1</SizeSpeed>
+            <SizeSpeed>0</SizeSpeed>
             <ObjectExtend>1</ObjectExtend>
             <ACallAJmp>0</ACallAJmp>
             <InterruptVectorAddress>0</InterruptVectorAddress>
@@ -340,7 +340,7 @@
             </VariousControls>
           </Ax51>
           <Lx51>
-            <useFile>0</useFile>
+            <useFile>1</useFile>
             <linkonly>0</linkonly>
             <UseMemoryFromTarget>1</UseMemoryFromTarget>
             <CaseSensitiveSymbols>0</CaseSensitiveSymbols>
@@ -348,8 +348,8 @@
             <DataOverlaying>1</DataOverlaying>
             <OverlayString></OverlayString>
             <MiscControls></MiscControls>
-            <DisableWarningNumbers></DisableWarningNumbers>
-            <LinkerCmdFile></LinkerCmdFile>
+            <DisableWarningNumbers>57</DisableWarningNumbers>
+            <LinkerCmdFile>.\DMI.lin</LinkerCmdFile>
             <Assign></Assign>
             <ReserveString></ReserveString>
             <CClasses></CClasses>

@@ -1,7 +1,7 @@
 #include "sm.h"
-
+#include "led.h"
 #include "debug.h"
-
+#include "task.h"
 #include "sm_main.h"
 
 uint8_t sm_cur_function;
@@ -19,7 +19,12 @@ void sm_initialize(void)
 {
   CDBG(("sm_initialize\n"));
   sm_cur_function = SM_MAIN;
-  sm_cur_state = SM_MAIN_INIT;
+  if(led_get_last_state() == LED_STATE_ADJ_BRIGHT) {
+    sm_cur_state = SM_MAIN_BRIGHT_IDLE;
+  } else {
+    sm_cur_state = SM_MAIN_COLOR_IDLE;
+  }
+  task_set(EV_KEY_PRESS);
 }
 
 

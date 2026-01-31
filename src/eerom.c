@@ -84,6 +84,9 @@ void eerom_load_config(void)
   uint16_t len;
   uint16_t addr = 0x0;
   uint8_t * p = NULL;
+  
+  CDBG("eerom_load_config\n");
+  
   p = (uint8_t *)&led_cfg;
   for(len = 0 ; len < sizeof(led_cfg); len ++) {
     *p = eerom_iap_read(addr);
@@ -104,6 +107,8 @@ void eerom_save_config(void)
   uint16_t len;
   uint16_t addr = 0x0;
   uint8_t * p = NULL;
+  
+  CDBG("eerom_save_config\n");
   
   eerom_iap_erase(addr); // erase first!
  
