@@ -9,10 +9,15 @@ enum task_events
   EV_KEY_SCAN            = 0, // 扫描按键
   EV_250MS               = 1, // 大约每250ms转一下
   EV_1S                  = 2, // 大约每1s转一下 
-  EV_KEY_PRESS           = 3, // key短按
-  EV_KEY_CC              = 4, // key逆时针旋转
-  EV_KEY_C               = 5, // key顺时针旋转
-  EV_TIMEO               = 6, // 超时了
+  EV_KEY_DOWN            = 3, // key按下
+  EV_KEY_PRESS           = 4, // key短按
+  EV_KEY_LPRESS          = 5, // key长按 
+  EV_KEY_UP              = 6, // key抬起
+  EV_KEY_CC              = 7, // key逆时针旋转，细粒度
+  EV_KEY_F_CC            = 8, // key逆时针旋转，粗粒度，F for fast！  
+  EV_KEY_C               = 9, // key顺时针旋转
+  EV_KEY_F_C             = 10, // key顺时针旋转 ，粗粒度，F for fast！   
+  EV_TIMEO               = 11, // 超时了
   EV_CNT  
 };
 

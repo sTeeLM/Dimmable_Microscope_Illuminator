@@ -32,6 +32,10 @@ void main(void)
   task_initialize();
   sm_initialize();
   
+  tm1650_set_dig(0, 0, '1');
+  tm1650_set_dig(1, 0, '2');  
+  tm1650_set_dig(2, 0, '3');
+  tm1650_set_dig(3, 0, '4');   
   while(1) {
     task_run();
   }

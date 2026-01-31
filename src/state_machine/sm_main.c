@@ -13,7 +13,6 @@ static void do_main_init(uint8_t to_func, uint8_t to_state, enum task_events ev)
 }
 
 static const struct sm_trans_slot code  sm_trans_main_init[] = {
-  {EV_1S, SM_MAIN, SM_MAIN_INIT, do_main_init},
   {NULL, NULL, NULL, NULL}
 };
 

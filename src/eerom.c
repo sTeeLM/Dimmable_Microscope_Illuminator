@@ -4,7 +4,7 @@
 #include "debug.h"
 #include "delay.h"
 #include "button.h"
-
+#include "gpio.h"
 #include "tm1650.h"
 #include "led.h"
 
@@ -62,7 +62,7 @@ static void eerom_iap_erase(uint16_t addr)
 
 static bit eerom_is_factory_reset(void)
 {
-  return 1;
+  return BUTTON_KEY == 0;
 }
 
 void eerom_initialize (void)
@@ -72,6 +72,8 @@ void eerom_initialize (void)
     led_factory_reset();
     tm1650_factory_reset();
     eerom_save_config();
+  } else {
+    CDBG("eerom_initialize\n");
   }
   
   eerom_load_config();

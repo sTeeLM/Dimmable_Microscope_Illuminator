@@ -73,6 +73,8 @@ void tm1650_factory_reset(void)
 
 void tm1650_initialize(void)
 {
+  CDBG("tm1650_initialize\n");
+  
   tm1650_data[0] = tm1650_data[1] 
     = tm1650_data[2] = tm1650_data[3] = 0;
   tm1650_display_mode = 0;
