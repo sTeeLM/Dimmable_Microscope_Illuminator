@@ -141,17 +141,6 @@ void led_factory_reset(void)
   CDBG("led_factory_reset\n");
   led_cfg.brightness = 500;
   led_cfg.color = 0;  
-  led_cfg.last_state = LED_STATE_ADJ_BRIGHT;
-}
-
-uint8_t led_get_last_state()
-{
-  return led_cfg.last_state;
-}
-
-void led_set_last_state(uint8_t val)
-{
-  led_cfg.last_state = val;
 }
 
 void led_initialize(void)

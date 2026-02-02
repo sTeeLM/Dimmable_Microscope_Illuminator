@@ -36,6 +36,12 @@ void button_initialize(void)
   key_down_cnt = 0;
 }
 
+void button_reset_fast(void)
+{
+  key_c_cnt = 0;
+  key_cc_cnt = 0;
+}
+
 static void button_A_ISR (void) interrupt 0 using 1
 {
   delay_10us(10);

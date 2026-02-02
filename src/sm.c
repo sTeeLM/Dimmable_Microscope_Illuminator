@@ -19,11 +19,7 @@ void sm_initialize(void)
 {
   CDBG(("sm_initialize\n"));
   sm_cur_function = SM_MAIN;
-  if(led_get_last_state() == LED_STATE_ADJ_BRIGHT) {
-    sm_cur_state = SM_MAIN_BRIGHT_IDLE;
-  } else {
-    sm_cur_state = SM_MAIN_COLOR_IDLE;
-  }
+  sm_cur_state = SM_MAIN_IDLE;
   task_set(EV_KEY_PRESS);
 }
 

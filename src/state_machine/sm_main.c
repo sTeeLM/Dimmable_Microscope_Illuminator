@@ -9,21 +9,19 @@
 #include "tm1650.h"
 #include "clock.h"
 #include "eerom.h"
+#include "button.h"
 
 #define MAIN_IDLE_SEC 10
-
 
 static void do_main_bright(uint8_t to_func, uint8_t to_state, enum task_events ev)
 {
   uint16_t bright;
 
-  if(sm_cur_state == SM_MAIN_BRIGHT_IDLE) {
+  if(sm_cur_state == SM_MAIN_IDLE) {
     tm1650_enable_display(1);
     tm1650_clear();
   }
-  
-  led_set_last_state(LED_STATE_ADJ_BRIGHT);
-  
+
   clock_set_timer(MAIN_IDLE_SEC); // every call reset timer
   
   if(ev == EV_KEY_C) {
@@ -60,12 +58,10 @@ static void do_main_color(uint8_t to_func, uint8_t to_state, enum task_events ev
 {
   uint16_t color;
   
-  if(sm_cur_state == SM_MAIN_COLOR_IDLE) {
+  if(sm_cur_state == SM_MAIN_IDLE) {
     tm1650_enable_display(1);
     tm1650_clear();
   }
-  
-  led_set_last_state(LED_STATE_ADJ_COLOR);
   
   clock_set_timer(MAIN_IDLE_SEC);
   
@@ -98,23 +94,16 @@ static void do_main_color(uint8_t to_func, uint8_t to_state, enum task_events ev
   }  
 }
 
-static void do_main_bright_idle(uint8_t to_func, uint8_t to_state, enum task_events ev)
+static void do_main_idle(uint8_t to_func, uint8_t to_state, enum task_events ev)
 {
-  CDBG("do_main_bright_idle ev = %bu\n", ev);
+  CDBG("do_main_idle ev = %bu\n", ev);
   tm1650_enable_display(0);
   tm1650_clear();
-  eerom_save_config(); // 进入空闲状态就保存一下状态
-}
-
-static void do_main_color_idle(uint8_t to_func, uint8_t to_state, enum task_events ev)
-{
-  CDBG("do_main_color_idle ev = %bu\n", ev);
-  tm1650_enable_display(0);
-  tm1650_clear();
+  button_reset_fast();
   eerom_save_config();
 }
 
-static const struct sm_trans_slot code  sm_trans_main_bright_idle[] = { 
+static const struct sm_trans_slot code  sm_trans_main_idle[] = { 
   {EV_KEY_C, SM_MAIN, SM_MAIN_BRIGHT, do_main_bright},
   {EV_KEY_CC, SM_MAIN, SM_MAIN_BRIGHT, do_main_bright}, 
   {EV_KEY_F_C, SM_MAIN, SM_MAIN_BRIGHT, do_main_bright},
@@ -129,16 +118,7 @@ static const struct sm_trans_slot code  sm_trans_main_bright[] = {
   {EV_KEY_F_C, SM_MAIN, SM_MAIN_BRIGHT, do_main_bright},
   {EV_KEY_F_CC, SM_MAIN, SM_MAIN_BRIGHT, do_main_bright},  
   {EV_KEY_PRESS, SM_MAIN, SM_MAIN_COLOR, do_main_color}, 
-  {EV_TIMEO, SM_MAIN, SM_MAIN_BRIGHT_IDLE, do_main_bright_idle},  
-  {NULL, NULL, NULL, NULL}
-};
-
-static const struct sm_trans_slot code  sm_trans_main_color_idle[] = { 
-  {EV_KEY_C, SM_MAIN, SM_MAIN_COLOR, do_main_color},
-  {EV_KEY_CC, SM_MAIN, SM_MAIN_COLOR, do_main_color}, 
-  {EV_KEY_F_C, SM_MAIN, SM_MAIN_COLOR, do_main_color},
-  {EV_KEY_F_CC, SM_MAIN, SM_MAIN_COLOR, do_main_color},  
-  {EV_KEY_PRESS, SM_MAIN, SM_MAIN_COLOR, do_main_color}, 
+  {EV_TIMEO, SM_MAIN, SM_MAIN_IDLE, do_main_idle},  
   {NULL, NULL, NULL, NULL}
 };
 
@@ -148,13 +128,12 @@ static const struct sm_trans_slot code  sm_trans_main_color[] = {
   {EV_KEY_F_C, SM_MAIN, SM_MAIN_COLOR, do_main_color},
   {EV_KEY_F_CC, SM_MAIN, SM_MAIN_COLOR, do_main_color},  
   {EV_KEY_PRESS, SM_MAIN, SM_MAIN_BRIGHT, do_main_bright}, 
-  {EV_TIMEO, SM_MAIN, SM_MAIN_COLOR_IDLE, do_main_color_idle}, 
+  {EV_TIMEO, SM_MAIN, SM_MAIN_IDLE, do_main_idle}, 
   {NULL, NULL, NULL, NULL}
 };
 
 const struct sm_state_slot code sm_function_main[] = {
-  {"SM_MAIN_BRIGHT_IDLE", sm_trans_main_bright_idle},
-  {"SM_MAIN_COLOR_IDLE", sm_trans_main_color_idle},  
+  {"SM_MAIN_IDLE", sm_trans_main_idle},  
   {"SM_MAIN_BRIGHT", sm_trans_main_bright}, 
   {"SM_MAIN_COLOR", sm_trans_main_color},
 };

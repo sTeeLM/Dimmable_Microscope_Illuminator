@@ -9,4 +9,7 @@
 void button_initialize(void);
 void button_proc(enum task_events ev);
 void button_scan_proc(enum task_events ev);
+
+void button_reset_fast(void);
+
 #endif
