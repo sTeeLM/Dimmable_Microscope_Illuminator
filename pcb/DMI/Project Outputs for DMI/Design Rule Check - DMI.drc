@@ -1,7 +1,10 @@
 Protel Design System Design Rule Check
 PCB File : E:\Lab\Dimmable_Microscope_Illuminator\pcb\DMI\DMI.PcbDoc
-Date     : 2026/1/27
-Time     : 17:13:45
+Date     : 2026/2/2
+Time     : 10:23:29
+
+Processing Rule : Clearance Constraint (Gap=0.15mm) (WithinRoom('USB')),(WithinRoom('USB'))
+Rule Violations :0
 
 Processing Rule : Clearance Constraint (Gap=0.254mm) (All),(All)
 Rule Violations :0
@@ -18,7 +21,7 @@ Rule Violations :0
 Processing Rule : Width Constraint (Min=0.254mm) (Max=0.254mm) (Preferred=0.254mm) (All)
 Rule Violations :0
 
-Processing Rule : Width Constraint (Min=0.254mm) (Max=2mm) (Preferred=1.2mm) (InNetClass('Power'))
+Processing Rule : Width Constraint (Min=0.254mm) (Max=2mm) (Preferred=0.254mm) (InNetClass('Power'))
 Rule Violations :0
 
 Processing Rule : Routing Topology Rule(Topology=Shortest) (All)
@@ -39,7 +42,16 @@ Rule Violations :0
 Processing Rule : Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)
 Rule Violations :0
 
-Processing Rule : Minimum Solder Mask Sliver (Gap=0.08mm) (HasFootprint('USB-MICRO_B')),(All)
+Processing Rule : Minimum Solder Mask Sliver (Gap=0.09mm) (HasFootprint('TSOP65P640-20BL')),(All)
+Rule Violations :0
+
+Processing Rule : Minimum Solder Mask Sliver (Gap=0.04mm) (WithinRoom('USB')),(All)
+Rule Violations :0
+
+Processing Rule : Minimum Solder Mask Sliver (Gap=0.09mm) (HasFootprint('ESOP100-10')),(All)
+Rule Violations :0
+
+Processing Rule : Silk To Solder Mask (Clearance=0.09mm) (HasFootprint('CD3216-1206')),(All)
 Rule Violations :0
 
 Processing Rule : Silk To Solder Mask (Clearance=0.254mm) (IsPad),(All)
@@ -49,6 +61,9 @@ Processing Rule : Silk to Silk (Clearance=0.254mm) (All),(All)
 Rule Violations :0
 
 Processing Rule : Net Antennae (Tolerance=0mm) (All)
+Rule Violations :0
+
+Processing Rule : Room USB (Bounding Region = (32.385mm, 49.276mm, 43.434mm, 60.071mm) (False)
 Rule Violations :0
 
 Processing Rule : Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)
