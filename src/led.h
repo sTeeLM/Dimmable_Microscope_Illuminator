@@ -21,4 +21,7 @@ void led_dec_brightness(bit fast);
 uint16_t led_get_brightness(void);
 uint16_t led_get_color(void);
 
+void led_power_off(void);
+void led_power_on(void);
+
 #endif

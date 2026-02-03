@@ -136,6 +136,26 @@ uint16_t led_get_color()
   return led_cfg.color;
 }
 
+/* 
+  set brightness to 0
+      color to 0
+  dont save led_cfg.brightness & led_cfg.color
+*/
+void led_power_off(void)
+{
+  led_set_brightness_color_internal(0, 0);
+}
+
+/* 
+  restore from config
+  led_cfg.brightness
+  led_cfg.color
+*/
+void led_power_on(void)
+{
+  led_set_brightness_color_internal(led_cfg.brightness, led_cfg.color);
+}
+
 void led_factory_reset(void)
 {
   CDBG("led_factory_reset\n");
@@ -171,7 +191,7 @@ void led_initialize(void)
   CCAP1L = 0xFF; //PWM 占空比为0%[(400H-400H)/400H]
   CCAP1H = 0xFF;  
   
-  led_set_brightness_color_internal(led_cfg.brightness, led_cfg.color);
+  led_power_on();
   
   CR = 1; //启动PCA 计时器
 }

@@ -20,6 +20,8 @@ static uint8_t key_down_cnt;
 static uint8_t key_c_cnt;
 static uint8_t key_cc_cnt;
 
+static bit wake_from_key_press;
+
 void button_initialize(void)
 {
   CDBG("button_initialize\n");  
@@ -72,7 +74,23 @@ static void button_A_ISR (void) interrupt 0 using 1
 static void button_KEY_ISR (void) interrupt 2 using 1
 {
   key_cc_cnt = key_c_cnt = 0;
+  wake_from_key_press = 1;
   IE1 = 0;
+}
+
+void button_reset_wake_from_key_press(void)
+{
+  wake_from_key_press = 0;
+}
+
+bit button_wake_from_key_press(void)
+{
+  return wake_from_key_press;
+}
+
+void button_reset_state(void)
+{
+  key_down = 0;
 }
 
 void button_scan_proc(enum task_events ev)

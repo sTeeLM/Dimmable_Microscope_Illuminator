@@ -21,6 +21,13 @@ static void do_main_bright(uint8_t to_func, uint8_t to_state, enum task_events e
     tm1650_enable_display(1);
     tm1650_clear();
   }
+  
+  if(sm_cur_state == SM_MAIN_STOP) {
+    tm1650_enable_display(1);
+    tm1650_play_banner(1);
+    tm1650_clear();
+    led_power_on();
+  }
 
   clock_set_timer(MAIN_IDLE_SEC); // every call reset timer
   
@@ -103,6 +110,38 @@ static void do_main_idle(uint8_t to_func, uint8_t to_state, enum task_events ev)
   eerom_save_config();
 }
 
+static void do_main_stop(uint8_t to_func, uint8_t to_state, enum task_events ev)
+{
+  if(ev == EV_KEY_LPRESS) {
+    tm1650_clear();
+    tm1650_play_banner(0);
+    task_set(EV_TIMEO);
+  } else {
+    tm1650_enable_display(0);
+    tm1650_clear();
+    led_power_off();
+    button_reset_wake_from_key_press();
+    PCON |= 0x2;
+    /* sleet here */
+    if(button_wake_from_key_press()) {
+      CDBG("wake form key press\n!");
+      task_set(EV_KEY_PRESS);
+      button_reset_state(); // dont send more LPRESS!
+      button_reset_wake_from_key_press();
+    }
+  }
+}
+
+static const struct sm_trans_slot code  sm_trans_main_stop[] = { 
+  {EV_KEY_C, SM_MAIN, SM_MAIN_BRIGHT, do_main_bright},
+  {EV_KEY_CC, SM_MAIN, SM_MAIN_BRIGHT, do_main_bright}, 
+  {EV_KEY_F_C, SM_MAIN, SM_MAIN_BRIGHT, do_main_bright},
+  {EV_KEY_F_CC, SM_MAIN, SM_MAIN_BRIGHT, do_main_bright},  
+  {EV_KEY_PRESS, SM_MAIN, SM_MAIN_BRIGHT, do_main_bright}, 
+  {EV_TIMEO, SM_MAIN, SM_MAIN_STOP, do_main_stop},   
+  {NULL, NULL, NULL, NULL}  
+};
+
 static const struct sm_trans_slot code  sm_trans_main_idle[] = { 
   {EV_KEY_C, SM_MAIN, SM_MAIN_BRIGHT, do_main_bright},
   {EV_KEY_CC, SM_MAIN, SM_MAIN_BRIGHT, do_main_bright}, 
@@ -118,7 +157,8 @@ static const struct sm_trans_slot code  sm_trans_main_bright[] = {
   {EV_KEY_F_C, SM_MAIN, SM_MAIN_BRIGHT, do_main_bright},
   {EV_KEY_F_CC, SM_MAIN, SM_MAIN_BRIGHT, do_main_bright},  
   {EV_KEY_PRESS, SM_MAIN, SM_MAIN_COLOR, do_main_color}, 
-  {EV_TIMEO, SM_MAIN, SM_MAIN_IDLE, do_main_idle},  
+  {EV_TIMEO, SM_MAIN, SM_MAIN_IDLE, do_main_idle}, 
+  {EV_KEY_LPRESS, SM_MAIN, SM_MAIN_STOP, do_main_stop},  
   {NULL, NULL, NULL, NULL}
 };
 
@@ -133,6 +173,7 @@ static const struct sm_trans_slot code  sm_trans_main_color[] = {
 };
 
 const struct sm_state_slot code sm_function_main[] = {
+  {"SM_MAIN_STOP", sm_trans_main_stop},  
   {"SM_MAIN_IDLE", sm_trans_main_idle},  
   {"SM_MAIN_BRIGHT", sm_trans_main_bright}, 
   {"SM_MAIN_COLOR", sm_trans_main_color},

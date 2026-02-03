@@ -72,6 +72,34 @@ void tm1650_factory_reset(void)
   tm1650_cfg.brightness = 7;
 }
 
+void tm1650_play_banner(bit poweron)
+{
+
+  if(poweron) {
+    tm1650_set_dig(3, 0, '-');
+    delay_ms(200);
+    tm1650_set_dig(2, 0, '-');
+    delay_ms(200);
+    tm1650_set_dig(1, 0, '-');
+    delay_ms(200);
+    tm1650_set_dig(0, 0, '-'); 
+  } else {
+    
+    tm1650_set_dig(0, 0, '-');
+    tm1650_set_dig(1, 0, '-');
+    tm1650_set_dig(2, 0, '-');
+    tm1650_set_dig(3, 0, '-');
+    
+    tm1650_set_dig(0, 0, ' ');
+    delay_ms(200);
+    tm1650_set_dig(1, 0, ' ');
+    delay_ms(200);
+    tm1650_set_dig(2, 0, ' ');
+    delay_ms(200);
+    tm1650_set_dig(3, 0, ' '); 
+  }
+}
+
 void tm1650_initialize(void)
 {
   CDBG("tm1650_initialize\n");
@@ -83,13 +111,7 @@ void tm1650_initialize(void)
   tm1650_enable_display(1);
   tm1650_set_brightness(tm1650_cfg.brightness);
   tm1650_clear();
-  tm1650_set_dig(3, 0, '-');
-  delay_ms(200);
-  tm1650_set_dig(2, 0, '-');
-  delay_ms(200);
-  tm1650_set_dig(1, 0, '-');
-  delay_ms(200);
-  tm1650_set_dig(0, 0, '-');  
+  tm1650_play_banner(1);
 }
 
 void tm1650_clear(void)

@@ -33,5 +33,6 @@ void tm1650_set_str(const char * str);
 void tm1650_clr_dp(void);
 void tm1650_set_dp(uint8_t dp);
 
+void tm1650_play_banner(bit poweron);
 
 #endif
