@@ -7,8 +7,8 @@ void gpio_initialize(void)
  
   P0M0 = 0x00;
   P0M1 = 0xFF;
-  P1M0 = 0x0C;  // SCL, SDA 开漏输出，DMI1，DMI2推挽输出
-  P1M1 = 0xFC;
+  P1M0 = 0x0F;  // SCL, SDA 开漏输出，DMI1，DMI2开漏输出
+  P1M1 = 0xFF;
   P2M0 = 0x00;
   P2M1 = 0xFF;
   P3M0 = 0x00;
