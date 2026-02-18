@@ -1,7 +1,7 @@
 Protel Design System Design Rule Check
 PCB File : D:\Lab\Dimmable_Microscope_Illuminator\pcb\DMI\DMI.PcbDoc
 Date     : 2026/2/18
-Time     : 12:39:37
+Time     : 16:31:33
 
 Processing Rule : Clearance Constraint (Gap=0.15mm) (WithinRoom('USB')),(WithinRoom('USB'))
 Rule Violations :0

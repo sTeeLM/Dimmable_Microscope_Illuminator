@@ -23,6 +23,7 @@ void gpio_initialize(void)
   
   LED_DIM1  = 0;
   LED_DIM2  = 0;  
+
 }
 
 
