@@ -1,12 +1,12 @@
 Protel Design System Design Rule Check
 PCB File : D:\Lab\Dimmable_Microscope_Illuminator\pcb\DMI\DMI.PcbDoc
-Date     : 2026/2/18
-Time     : 16:31:33
-
-Processing Rule : Clearance Constraint (Gap=0.15mm) (WithinRoom('USB')),(WithinRoom('USB'))
-Rule Violations :0
+Date     : 2026/3/1
+Time     : 19:12:10
 
 Processing Rule : Clearance Constraint (Gap=0.254mm) (All),(All)
+Rule Violations :0
+
+Processing Rule : Clearance Constraint (Gap=0.15mm) (WithinRoom('USB')),(WithinRoom('USB'))
 Rule Violations :0
 
 Processing Rule : Clearance Constraint (Gap=0.2mm) (HasFootprint('TSOP65P490_HS-8N')),(All)
@@ -21,10 +21,10 @@ Rule Violations :0
 Processing Rule : Modified Polygon (Allow modified: No), (Allow shelved: No)
 Rule Violations :0
 
-Processing Rule : Width Constraint (Min=0.254mm) (Max=0.254mm) (Preferred=0.254mm) (All)
+Processing Rule : Width Constraint (Min=0.254mm) (Max=2mm) (Preferred=0.254mm) (InNetClass('Power'))
 Rule Violations :0
 
-Processing Rule : Width Constraint (Min=0.254mm) (Max=2mm) (Preferred=0.254mm) (InNetClass('Power'))
+Processing Rule : Width Constraint (Min=0.254mm) (Max=0.254mm) (Preferred=0.254mm) (All)
 Rule Violations :0
 
 Processing Rule : Routing Topology Rule(Topology=Shortest) (All)
@@ -42,22 +42,22 @@ Rule Violations :0
 Processing Rule : Hole To Hole Clearance (Gap=0.254mm) (All),(All)
 Rule Violations :0
 
-Processing Rule : Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)
-Rule Violations :0
-
 Processing Rule : Minimum Solder Mask Sliver (Gap=0.09mm) (HasFootprint('TSOP65P640-20BL')),(All)
-Rule Violations :0
-
-Processing Rule : Minimum Solder Mask Sliver (Gap=0.04mm) (WithinRoom('USB')),(All)
 Rule Violations :0
 
 Processing Rule : Minimum Solder Mask Sliver (Gap=0.09mm) (HasFootprint('ESOP100-10')),(All)
 Rule Violations :0
 
-Processing Rule : Silk To Solder Mask (Clearance=0.09mm) (HasFootprint('CD3216-1206')),(All)
+Processing Rule : Minimum Solder Mask Sliver (Gap=0.04mm) (WithinRoom('USB')),(All)
+Rule Violations :0
+
+Processing Rule : Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)
 Rule Violations :0
 
 Processing Rule : Silk To Solder Mask (Clearance=0.254mm) (IsPad),(All)
+Rule Violations :0
+
+Processing Rule : Silk To Solder Mask (Clearance=0.09mm) (HasFootprint('CD3216-1206')),(All)
 Rule Violations :0
 
 Processing Rule : Silk to Silk (Clearance=0.254mm) (All),(All)
@@ -75,4 +75,4 @@ Rule Violations :0
 
 Violations Detected : 0
 Waived Violations : 0
-Time Elapsed        : 00:00:00
+Time Elapsed        : 00:00:01

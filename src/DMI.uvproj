@@ -13,7 +13,7 @@
       <uAC6>0</uAC6>
       <TargetOption>
         <TargetCommonOption>
-          <Device>STC8G1K17A</Device>
+          <Device>STC8G1K17A Series</Device>
           <Vendor>STC</Vendor>
           <Cpu>IRAM(0-0xFF) XRAM(0-0x03FF) IROM(0-0x43FF) CLOCK(35000000)</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
