@@ -50,14 +50,6 @@ static void button_A_ISR (void) interrupt 0 using 1
   
   if(!BUTTON_INT0) {
     if(!BUTTON_A && !BUTTON_B) {
-      if(key_c_cnt < KEY_MAX_FAST_CNT) {
-        task_set(EV_KEY_C);
-        key_c_cnt ++;
-      } else {
-        task_set(EV_KEY_F_C);
-      }
-      key_cc_cnt = 0;
-    } else if(!BUTTON_A && BUTTON_B){
       if(key_cc_cnt < KEY_MAX_FAST_CNT) {
         task_set(EV_KEY_CC);
         key_cc_cnt ++;
@@ -65,6 +57,14 @@ static void button_A_ISR (void) interrupt 0 using 1
         task_set(EV_KEY_F_CC);
       }
       key_c_cnt = 0;
+    } else if(!BUTTON_A && BUTTON_B){
+      if(key_c_cnt < KEY_MAX_FAST_CNT) {
+        task_set(EV_KEY_C);
+        key_c_cnt ++;
+      } else {
+        task_set(EV_KEY_F_C);
+      }
+      key_cc_cnt = 0;
     }
   }
 
